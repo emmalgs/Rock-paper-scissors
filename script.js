@@ -6,12 +6,14 @@ const rps =['Rock', 'Paper', 'Scissors'];
 console.log(computerPlay(rps));
 
 function playRound(playerSelection, computerSelection) {
-    if (playerSelection === computerSelection) {
-        return `It's a tie!`
-    } else if (playerSelection == "rock" && computerSelection == "Paper") {
-        return 'You Lose! Paper beats rock!' 
-    } else if (playerSelection == "paper" && computerSelection == "Rock") {
-        return `You win! Paper beats rock!`
+    if ((computerSelection === 'Rock' && playerSelection === 'paper') OR 
+    (computerSelection === 'Paper' && playerSelection === 'Scissors') OR 
+    (computerSelection === 'Scissors' && playerSelection === 'rock')) {
+        return `Nice work! You win...this round`
+    } else if ((computerSelection === 'Paper' && playerSelection === 'rock') OR
+    (computerSelection === 'Rock' && playerSelection === 'Scissors') OR
+    (computerSelection === 'Scissors' && playerSelection === 'paper')) {
+        return `Too bad! You lose!`
     }
 }
 
