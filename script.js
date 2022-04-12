@@ -1,18 +1,24 @@
-function computerPlay(rps) {
-    return rps[Math.floor(Math.random()*rps.length)];
+function computerPlay(options) {
+    return (options)[Math.floor(Math.random()*(options).length)];
 }
-
-const rps =['Rock', 'Paper', 'Scissors'];
-console.log(computerPlay(rps));
+const options = ['Rock', 'Paper', 'Scissors']
 
 function playRound(playerSelection, computerSelection) {
-    if (playerSelection === computerSelection) {
-        return `I guess it's a tie.`
-    } else if (playerSelection !== computerSelection) {
-        return `who the fuck knows, man`
+    if (computerSelection === 'Rock') {
+        return `Computer played ${computerSelection}. It's a tie!`
+    } else if (computerSelection === 'Paper'){
+        return `You lose! Computer played ${computerSelection}`
+    } else if (computerSelection === 'Scissors') {
+        return `You win! Computer played ${computerSelection}`
     }
 }
 
 const playerSelection = "Rock";
-const computerSelection = computerPlay(rps);
+const computerSelection = computerPlay(options);
 console.log(playRound(playerSelection, computerSelection));
+
+function game(playRound) {
+    for (let i = 0; i < 5; i++) {
+        
+     }
+}
