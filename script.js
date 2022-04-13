@@ -1,7 +1,8 @@
-
+//Global variables
 let userScore = 0;
 let compScore = 0;
 
+//computer selects random Rock Paper Scissors
 function computerPlay() {
     let number = Math.floor(Math.random() * (3+1));
     if (number == 1)
@@ -11,16 +12,8 @@ function computerPlay() {
     else return 'Scissors';
 }
 
-function game(playRound) {
-    for (let i = 0; i < 5; i++) {
-        userScore = userScore + i;
-        compScore = compScore + i;
-     }
-}
 
-let computerSelection = computerPlay();
-let playerSelection = prompt("Rock, Paper, or Scissors?")
-
+//Plays one round of the game
 function playRound(playerSelection, computerSelection) {
     if (computerSelection === 'Rock' && (playerSelection.toUpperCase() === 'ROCK')) {
         return `Computer played ${computerSelection}. It's a tie!`
@@ -48,4 +41,23 @@ function playRound(playerSelection, computerSelection) {
         return `It's a tie! Computer played ${computerSelection}`
     }
 }
-console.log(playRound(playerSelection, computerSelection));
+
+//This loops through 5 rounds of the playRound function.
+//
+function game() {
+    for (let i = 0; i < 5; i++) {
+        const computerSelection = computerPlay();
+        let playerSelection = prompt("Rock, Paper, or Scissors?");
+        console.log(playRound(playerSelection, computerSelection))
+        console.log(`YOU ${userScore} - COMPUTER ${compScore}`)
+   }
+   if (userScore < compScore) {
+       console.log("Computer Wins! Better try again.")
+   } else if (userScore > compScore) {
+       console.log("YOU WON THE WHOLE GAME WOW!")
+   } else if (userScore == compScore) {
+       console.log("It's a DRAW!")
+   }
+}
+
+game(playRound)
