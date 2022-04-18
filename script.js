@@ -12,34 +12,33 @@ function computerPlay() {
 
 function playRound(playerSelection) {
     let computerSelection = computerPlay();
-//for a tie
+    
     if (computerSelection === playerSelection) {
         return `Computer played ${computerSelection}. It's a tie!`
-        //user wins
     } else if ((computerSelection === 'Paper' && (playerSelection === `Scissors`)) || 
             (computerSelection === 'Rock' && (playerSelection === `Paper`)) ||
             (computerSelection === 'Scissors' && (playerSelection === `Rock`))) { 
         userScore++;
         return `Computer played ${computerSelection}. YOU WIN!`
-
-        if (userScore == 5) {
-            score.textContent = `You won the game!`
-        }
-        //comp wins
 } else {
     compScore++;
     return `You lose! Computer played ${computerSelection}.`
-
-    if (compScore == 5) {
-        score.textContent = `Computer won the game! Reload the page to play again.`
-    }
 }
 }
 
 buttons.forEach(button =>{
     button.addEventListener('click', () => {
         result.textContent = `${playRound(button.value)}`
-        score.textContent = `You have ${userScore}, Computer has ${compScore}`;
     })
 })
+
+function scores() {
+    if (userScore == 5) {
+        return `You won the game!`
+} else if (compScore == 5) {
+   return `Computer won the game! Reload the page to play again.`
+} else (compScore <5 || userScore <5); {
+    return `You have ${userScore}, Computer has ${compScore}`;
+}}
+score.textContent = `${scores()}`;
 
