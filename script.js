@@ -5,6 +5,7 @@ const score = document.querySelector('div.score');
 let userScore = 0;
 let compScore = 0;
 
+
 function computerPlay() {
     let choices = [`Rock`, `Paper`, `Scissors`]
     return choices[Math.floor(Math.random() * choices.length)]
@@ -13,15 +14,26 @@ function computerPlay() {
 function playRound(playerSelection) {
     let computerSelection = computerPlay();
     let results = '';
+    score.textContent = `You: ${userScore} Computer: ${compScore}`
 
     if (computerSelection === playerSelection) {
-        results = `Computer played ${computerSelection}. It's a tie!`
+        results = `You both played ${computerSelection}. It's a tie!`
     } else if ((computerSelection === 'Paper' && (playerSelection === `Scissors`)) || 
             (computerSelection === 'Rock' && (playerSelection === `Paper`)) ||
             (computerSelection === 'Scissors' && (playerSelection === `Rock`))) { 
-        results = `Computer played ${computerSelection}. YOU WIN!`
+        userScore++
+        results = `${playerSelection} beats ${computerSelection}. YOU WIN!`
+
+        if (userScore ==5) {
+            results += ` You won the whole game WOW`
+        }
     } else {
-        results = `You lose! Computer played ${computerSelection}.`
+        compScore++
+        results = `${computerSelection} beats ${playerSelection}. You lose.`
+
+        if (compScore == 5) {
+            results += `The computer won the whole game BUMMER`
+        }
     }
     return results
 }
@@ -32,22 +44,7 @@ buttons.forEach(button =>{
     })
 })
 
-function game() {
-    let roundResult = playRound(button.value);
 
-    if (roundResult.search('YOU WIN!') > -1) {
-        userScore++;
-    } else if (roundResult.search('You Lose!') > -1) {
-        compScore++;
-    }
-    
-    if (userScore >= 5) {
-        score.textContent = `You won the game!`
-    } else if (compScore == 5) {
-        score.textContent = `Computer won the game! Reload the page to play again.`
-    } else (compScore <5 || userScore <5); {
-        score.textContent = `You have ${userScore}, Computer has ${compScore}`;
-}}
 
 
 
