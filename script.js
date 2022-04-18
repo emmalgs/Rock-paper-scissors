@@ -12,18 +12,18 @@ function computerPlay() {
 
 function playRound(playerSelection) {
     let computerSelection = computerPlay();
-    
+    let results = '';
+
     if (computerSelection === playerSelection) {
-        return `Computer played ${computerSelection}. It's a tie!`
+        results = `Computer played ${computerSelection}. It's a tie!`
     } else if ((computerSelection === 'Paper' && (playerSelection === `Scissors`)) || 
             (computerSelection === 'Rock' && (playerSelection === `Paper`)) ||
             (computerSelection === 'Scissors' && (playerSelection === `Rock`))) { 
-        userScore++;
-        return `Computer played ${computerSelection}. YOU WIN!`
-} else {
-    compScore++;
-    return `You lose! Computer played ${computerSelection}.`
-}
+        results = `Computer played ${computerSelection}. YOU WIN!`
+    } else {
+        results = `You lose! Computer played ${computerSelection}.`
+    }
+    return results
 }
 
 buttons.forEach(button =>{
@@ -32,13 +32,22 @@ buttons.forEach(button =>{
     })
 })
 
-function scores() {
-    if (userScore == 5) {
-        return `You won the game!`
-} else if (compScore == 5) {
-   return `Computer won the game! Reload the page to play again.`
-} else (compScore <5 || userScore <5); {
-    return `You have ${userScore}, Computer has ${compScore}`;
+function game() {
+    let roundResult = playRound(button.value);
+
+    if (roundResult.search('YOU WIN!') > -1) {
+        userScore++;
+    } else if (roundResult.search('You Lose!') > -1) {
+        compScore++;
+    }
+    
+    if (userScore >= 5) {
+        score.textContent = `You won the game!`
+    } else if (compScore == 5) {
+        score.textContent = `Computer won the game! Reload the page to play again.`
+    } else (compScore <5 || userScore <5); {
+        score.textContent = `You have ${userScore}, Computer has ${compScore}`;
 }}
-score.textContent = `${scores()}`;
+
+
 
