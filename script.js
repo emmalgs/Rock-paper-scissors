@@ -46,6 +46,8 @@ function playRound(playerSelection, computerSelection) {
 //
 function game() {
     for (let i = 0; i < 5; i++) {
+//computerSelection and playerSelection can be defined in this function because 
+//it nests or whatever playRound, so playRound can refer to the const and let in this function to run.
         const computerSelection = computerPlay();
         let playerSelection = prompt("Rock, Paper, or Scissors?");
         console.log(playRound(playerSelection, computerSelection))
